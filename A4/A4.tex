@@ -1,0 +1,227 @@
+\documentclass{cs1204}
+\usepackage{enumitem}
+
+\author{Rushil Gupta}
+\problem{4}
+\collab{-}
+
+\begin{document}
+
+\section*{Problem 2}
+
+\subsection*{1) Build a Max-Heap}
+
+To convert the array \([20, 10, 30, 25, 17, 29, 93]\) into a max-heap using the heapify algorithm, we perform the following steps:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Initial Array:}
+    \[
+    [20, \ 10, \ 30, \ 25, \ 17, \ 29, \ 93]
+    \]
+    
+    \item \textbf{Heapify at Index 2:}
+    \begin{itemize}
+        \item Current element: \(30\)
+        \item Left child (Index 5): \(29\)
+        \item Right child (Index 6): \(93\)
+        \item Since \(93 > 30\), swap \(30\) and \(93\).
+    \end{itemize}
+    \[
+    [20, \ 10, \ 93, \ 25, \ 17, \ 29, \ 30]
+    \]
+    
+    \item \textbf{Heapify at Index 1:}
+    \begin{itemize}
+        \item Current element: \(10\)
+        \item Left child (Index 3): \(25\)
+        \item Right child (Index 4): \(17\)
+        \item Since \(25 > 10\), swap \(10\) and \(25\).
+    \end{itemize}
+    \[
+    [20, \ 25, \ 93, \ 10, \ 17, \ 29, \ 30]
+    \]
+    
+    \item \textbf{Heapify at Index 0:}
+    \begin{itemize}
+        \item Current element: \(20\)
+        \item Left child (Index 1): \(25\)
+        \item Right child (Index 2): \(93\)
+        \item Since \(93 > 20\), swap \(20\) and \(93\).
+    \end{itemize}
+    \[
+    [93, \ 25, \ 20, \ 10, \ 17, \ 29, \ 30]
+    \]
+    
+    \item \textbf{Heapify at Index 2 (After Swap):}
+    \begin{itemize}
+        \item Current element: \(20\)
+        \item Left child (Index 5): \(29\)
+        \item Right child (Index 6): \(30\)
+        \item Since \(30 > 20\), swap \(20\) and \(30\).
+    \end{itemize}
+    \[
+    [93, \ 25, \ 30, \ 10, \ 17, \ 29, \ 20]
+    \]
+\end{enumerate}
+
+\subsection*{2) Delete Elements}
+
+We perform successive delete operations to remove the maximum element from the heap until it is empty. After each deletion, we record the removed element and show the state of the heap.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Initial Heap:}
+    \[
+    [93, \ 25, \ 30, \ 10, \ 17, \ 29, \ 20]
+    \]
+    
+    \item \textbf{Delete Maximum Element (93):}
+    \begin{itemize}
+        \item Swap \(93\) with the last element \(20\).
+        \item Remove \(93\) from the heap.
+        \item Heap before heapify:
+        \[
+        [20, \ 25, \ 30, \ 10, \ 17, \ 29]
+        \]
+        \item Heapify at Index 0:
+        \begin{itemize}
+            \item Current element: \(20\)
+            \item Left child: \(25\)
+            \item Right child: \(30\)
+            \item Swap \(20\) with \(30\).
+        \end{itemize}
+        \[
+        [30, \ 25, \ 20, \ 10, \ 17, \ 29]
+        \]
+        \item Heapify at Index 2:
+        \begin{itemize}
+            \item Current element: \(20\)
+            \item Left child: \(29\)
+            \item No right child.
+            \item Swap \(20\) with \(29\).
+        \end{itemize}
+        \[
+        [30, \ 25, \ 29, \ 10, \ 17, \ 20]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (30):}
+    \begin{itemize}
+        \item Swap \(30\) with the last element \(20\).
+        \item Remove \(30\) from the heap.
+        \item Heap before heapify:
+        \[
+        [20, \ 25, \ 29, \ 10, \ 17]
+        \]
+        \item Heapify at Index 0:
+        \begin{itemize}
+            \item Current element: \(20\)
+            \item Left child: \(25\)
+            \item Right child: \(29\)
+            \item Swap \(20\) with \(29\).
+        \end{itemize}
+        \[
+        [29, \ 25, \ 20, \ 10, \ 17]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (29):}
+    \begin{itemize}
+        \item Swap \(29\) with the last element \(17\).
+        \item Remove \(29\) from the heap.
+        \item Heap before heapify:
+        \[
+        [17, \ 25, \ 20, \ 10]
+        \]
+        \item Heapify at Index 0:
+        \begin{itemize}
+            \item Current element: \(17\)
+            \item Left child: \(25\)
+            \item Right child: \(20\)
+            \item Swap \(17\) with \(25\).
+        \end{itemize}
+        \[
+        [25, \ 17, \ 20, \ 10]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (25):}
+    \begin{itemize}
+        \item Swap \(25\) with the last element \(10\).
+        \item Remove \(25\) from the heap.
+        \item Heap before heapify:
+        \[
+        [10, \ 17, \ 20]
+        \]
+        \item Heapify at Index 0:
+        \begin{itemize}
+            \item Current element: \(10\)
+            \item Left child: \(17\)
+            \item Right child: \(20\)
+            \item Swap \(10\) with \(20\).
+        \end{itemize}
+        \[
+        [20, \ 17, \ 10]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (20):}
+    \begin{itemize}
+        \item Swap \(20\) with the last element \(10\).
+        \item Remove \(20\) from the heap.
+        \item Heap before heapify:
+        \[
+        [10, \ 17]
+        \]
+        \item Heapify at Index 0:
+        \begin{itemize}
+            \item Current element: \(10\)
+            \item Left child: \(17\)
+            \item Swap \(10\) with \(17\).
+        \end{itemize}
+        \[
+        [17, \ 10]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (17):}
+    \begin{itemize}
+        \item Swap \(17\) with the last element \(10\).
+        \item Remove \(17\) from the heap.
+        \item Heap before heapify:
+        \[
+        [10]
+        \]
+    \end{itemize}
+    \item \textbf{Delete Maximum Element (10):}
+    \begin{itemize}
+        \item Remove \(10\) from the heap.
+        \item Heap is now empty.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{3) Resulting Array}
+
+\begin{itemize}
+    \item \textbf{Removed Elements:}
+    \[
+    [93, \ 30, \ 29, \ 25, \ 20, \ 17, \ 10]
+    \]
+    
+    \item \textbf{Special Property:}
+    
+    The resulting array of removed elements is sorted in \textbf{descending order}. This is a characteristic outcome of repeatedly deleting the maximum element from a max-heap, effectively performing a heap sort.
+    
+    \item \textbf{Time Complexity Analysis:}
+    
+    \begin{itemize}
+        \setlength{\itemsep}{1em}
+        \item \textbf{Building the Max-Heap:} We perform heapify at \(n // 2\) nodes. Heapify is a recursive process that takes \(O(\log n)\) time for each node. However, since the invariant when we call the heapify function is that the left and right subtrees are already max-heaps, we can say that the time complexity is \(O(n)\).
+    
+        \item \textbf{Deleting Elements:} Each deletion operation takes \(O(\log n)\) time due to the need to maintain the heap property after removal. Since there are \(n\) deletions, this step takes \(O(n \log n)\) time.
+    
+        \item \textbf{Overall Time Complexity:} The total time complexity for forming the resulting sorted array from the original heap is \(O(n \log n)\).
+    \end{itemize}
+
+
+    \textbf{Space Complexity:} The space complexity is \(O(n)\). This is because we store the removed elements in a separate array, which requires additional space proportional to the number of elements \(n\). All heap operations are performed in-place on the original array, requiring \(O(1)\) extra space. However, the separate array for removed elements dominates the space usage, resulting in an overall space complexity of \(O(n)\).
+    
+
+    However, as an extension, a modification can be made so that the space complexity is \(O(1)\). This can be done by storing the deleted elements in last indices of the array itself. But, this would give an array sorted in ascending order. But, to sort the array in descending order, we can use a min-heap instead of a max-heap.
+\end{itemize}
+
+\end{document}
